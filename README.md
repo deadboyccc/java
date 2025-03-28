@@ -1,18 +1,14 @@
-## Getting Started
+# Java Playground
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This repository serves as a personal playground for learning and experimenting with Java.
 
-## Folder Structure
+I am currently following the Udemy Java 17 Masterclass and will be using this space to practice concepts, build small projects, and generally solidify my understanding of the language.
 
-The workspace contains two folders by default, where:
+The workspace contains two folders by default:
 
 - `src`: the folder to maintain sources
 - `lib`: the folder to maintain dependencies
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Feel free to browse the code, but please note that it's primarily for my own learning and may not represent best practices or production-ready code.
