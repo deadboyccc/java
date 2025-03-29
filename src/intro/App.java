@@ -11,9 +11,21 @@ import java.util.random.*;
 @SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
+        for (int i = 0; i < 5; i++) {
+            Pojo p1 = new Pojo("1231", "test", "12/12/2020", "cs,js,etc");
+            System.out.println(p1);
+
+        }
+
+    }
+
+    private static void constructorOverloadingDefaultValues() {
         Car car1 = new Car();
+        car1.setMake("lambo");
+        car1.setColor("red");
         car1.describeCar();
 
+        Car car2 = new Car("test", "testModel", "red", 2, true);
     }
 
     private static void InputParseInt() {
