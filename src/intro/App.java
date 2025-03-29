@@ -11,6 +11,10 @@ import java.util.random.*;
 @SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
+
+    }
+
+    private static void OOPtest1() {
         Animal animal1 = new Animal("generic Animal", "huge", 400);
         doAnimalStuff(animal1, "slow");
         Dog dog = new Dog();
@@ -31,7 +35,6 @@ public class App {
         System.out.println("########");
         Fish fish = new Fish("Shark", 40, 2, 3);
         doAnimalStuff(fish, "fast");
-
     }
 
     public static void doAnimalStuff(Animal animal, String speed) {
