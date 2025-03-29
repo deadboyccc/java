@@ -2,5 +2,8 @@ package intro;
 
 public class InheritanceChallenge {
 
-  // skipped
+  public InheritanceChallenge() {
+    super();
+    // testing purposes
+  }
 }
