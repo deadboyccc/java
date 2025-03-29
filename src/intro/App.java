@@ -11,12 +11,20 @@ import java.util.random.*;
 @SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
+
+    }
+
+    private static void DtoPojo() {
+        for (int i = 0; i < 5; i++) {
+            LPAStudent p1 = new LPAStudent("1231", "test", "12/12/2020", "cs,js,etc");
+            System.out.println(p1);
+
+        }
         for (int i = 0; i < 5; i++) {
             Pojo p1 = new Pojo("1231", "test", "12/12/2020", "cs,js,etc");
             System.out.println(p1);
 
         }
-
     }
 
     private static void constructorOverloadingDefaultValues() {
