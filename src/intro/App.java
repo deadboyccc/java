@@ -11,7 +11,29 @@ import java.util.random.*;
 @SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
+        int age = 24;
+        System.out.printf("you are %.2f %n", (float) age);
+        String formattedString = String.format("you are %d", age);
+        System.out.println(formattedString);
+        String testString = "testString";
+        printStringInfo(testString);
+    }
 
+    private static void printStringInfo(String s) {
+        int length = s.length();
+        System.out.format("%n length: %d, first char[0] : %c %n", length, s.charAt(0));
+        System.out.format("%n last char: %c %n", s.charAt(length - 1));
+
+    }
+
+    private static void textBlock() {
+        // text block and formatting options
+        System.out.println("test \ntest1 \n test2");
+        final String textBlock = """
+                Lists:
+                        \u2020 test1
+                            \u2020 test1sub
+                           """;
     }
 
     private static void OOPtest1() {
