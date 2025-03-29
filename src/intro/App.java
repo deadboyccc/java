@@ -1,19 +1,56 @@
 package intro;
 
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.random.*;
 
+@SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        int lowBoundInt = Integer.MIN_VALUE;
-        int highBoundInt = Integer.MAX_VALUE;
-        System.out.println(lowBoundInt);
-        System.out.println(highBoundInt);
-        byte lowBoundByte = Byte.MIN_VALUE;
-        System.out.println(lowBoundByte);
-        System.out.println(Long.SIZE);
-        System.out.println(Long.MAX_VALUE);
+
+    }
+
+    private static void InputParseInt() {
+        Scanner cin = new Scanner(System.in);
+        System.out.println("num:");
+        int a = Integer.parseInt(cin.nextLine());
+        System.out.println(a);
+        cin.close();
+    }
+
+    private static void getRandom() {
+        List<Integer> probabilityArr = new ArrayList<Integer>();
+        Random random = new Random();
+
+        for (int i = 0; i < 5; i++) {
+            probabilityArr.add(random.nextInt(2)); // [0,2)
+        }
+        System.out.println(probabilityArr);
+    }
+
+    private static void testingStaticVars() {
+        Human foo = new Human("test", 10);
+        System.out.println(Human.population);
+    }
+
+    private static void whileLoop() {
+        int x = 100;
+        while (x > 10) {
+            System.out.println(x -= 10);
+        }
+    }
+
+    private static void binarySearchTestCase() {
+        int[] binarySearchArr = { -5, -2, 0, 3, 7, 9, 11, 25 };
+        int found = binarySearch(binarySearchArr, 3);
+        System.out.println(found);
+    }
+
+    private static void classesAndCollections() {
         Human test = new Human("Joe", Long.MAX_VALUE);
         System.out.println(test);
         System.out.println(factorial(5));
@@ -27,11 +64,38 @@ public class App {
         testMap.put("a", "first");
         testMap.put("b", "second");
         System.out.println(testMap.get("a"));
+    }
 
-        int[] binarySearchArr = { -5, -2, 0, 3, 7, 9, 11, 25 };
-        int found = binarySearch(binarySearchArr, 3);
-        System.out.println(found);
+    private static void wrapperClasses() {
+        System.out.println("Hello, World!");
+        int lowBoundInt = Integer.MIN_VALUE;
+        int highBoundInt = Integer.MAX_VALUE;
+        System.out.println(lowBoundInt);
+        System.out.println(highBoundInt);
+        byte lowBoundByte = Byte.MIN_VALUE;
+        System.out.println(lowBoundByte);
+        System.out.println(Long.SIZE);
+        System.out.println(Long.MAX_VALUE);
+    }
 
+    public static void switchEx() {
+        int a = 1;
+        switch (a) {
+            case 1:
+                System.out.println(a);
+                break;
+
+            default:
+                break;
+        }
+        int b = 1;
+
+        String result = switch (b) {
+            case 1 -> "one";
+            default -> "two";
+        };
+
+        System.out.println(result);
     }
 
     public static int binarySearch(int[] nums, int target) {
