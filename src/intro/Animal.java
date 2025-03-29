@@ -1,7 +1,7 @@
 package intro;
 
 public class Animal {
-  private String type;
+  protected String type;
   private String size;
   private double weight;
 
@@ -21,7 +21,7 @@ public class Animal {
   }
 
   public void move(String speed) {
-    System.out.println(type + " moves" + speed);
+    System.out.println(type + " moves " + speed);
   }
 
   public void makeNoise() {

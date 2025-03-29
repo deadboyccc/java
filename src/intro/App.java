@@ -11,7 +11,34 @@ import java.util.random.*;
 @SuppressWarnings("unused")
 public class App {
     public static void main(String[] args) throws Exception {
+        Animal animal1 = new Animal("generic Animal", "huge", 400);
+        doAnimalStuff(animal1, "slow");
+        Dog dog = new Dog();
+        Dog yorkie = new Dog("Yorkie", 20);
+        Dog rertriever = new Dog("lab", 25);
+        Dog wolf = new Dog("wolf", 40);
+        // list is an interface
+        List<Animal> animalList = new LinkedList<Animal>();
+        animalList.add(animal1);
+        animalList.add(rertriever);
+        animalList.add(yorkie);
+        animalList.add(wolf);
+        for (Animal animal : animalList) {
+            animal.makeNoise();
+            animal.move("fast");
 
+        }
+        System.out.println("########");
+        Fish fish = new Fish("Shark", 40, 2, 3);
+        doAnimalStuff(fish, "fast");
+
+    }
+
+    public static void doAnimalStuff(Animal animal, String speed) {
+        animal.makeNoise();
+        animal.move(speed);
+        System.out.println(animal);
+        System.out.println("_ _ _ _ _");
     }
 
     private static void DtoPojo() {
