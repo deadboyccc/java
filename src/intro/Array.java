@@ -5,8 +5,31 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Array {
+
   public static void main(String[] args) {
 
+    int[][] array2 = new int[3][4];
+    for (int[] outer : array2) {
+      System.out.println(Arrays.toString(outer));
+
+    }
+    for (int i = 0; i < array2.length; i++) {
+      // auto infer
+      var innner = array2[i];
+      for (int j = 0; j < innner.length; j++) {
+        array2[i][j] = (i * 10) + (j + 1);
+        // System.out.print(array2[i][j] + " ");
+      }
+      // System.err.println();
+    }
+    for (var outer : array2) {
+      for (var element : outer) {
+        System.out.print(element + "_");
+      }
+      System.err.println();
+    }
+    System.out.println("_".repeat(20));
+    System.out.println(Arrays.deepToString(array2));
     int[] firstArr = getRAndomArray(10);
     System.out.println(Arrays.toString(firstArr));
     Arrays.sort(firstArr);
