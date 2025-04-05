@@ -7,10 +7,40 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 public class Collections {
   public static void main(String[] args) {
+    for (int i = 0; i < 5; i++) {
 
+      DaysOfTheWeek test1 = getRandomDay();
+      System.out.println(test1);
+    }
+  }
+
+  private static DaysOfTheWeek getRandomDay() {
+    int index = new Random().nextInt(7);
+    var daysArr = DaysOfTheWeek.values();
+    return daysArr[index];
+  }
+
+  private static void boxingUnboxing() {
+    // Factory pattern is always avail on wrapper classes to box primitives
+    Integer boxedInt = Integer.valueOf(10);
+    // depcrecated way
+    // Integer depBoxedInt = new Integer(10);
+
+    // autoboxing || prefer
+    Integer autoBoxedInt = 15;
+    System.out.println(boxedInt);
+    System.out.println(autoBoxedInt);
+
+    // manual unboxing ( not pref )
+    int primInt = autoBoxedInt.intValue();
+    int AutoPrimInt = autoBoxedInt;
+  }
+
+  private static void ListsAndIterators() {
     // var should be the norm
     var objectList = new ArrayList<GrosseryItem>();
     objectList.add(new GrosseryItem("Milk"));
@@ -38,7 +68,6 @@ public class Collections {
       }
     }
     System.out.println(intLinkedList);
-
   }
 
 }
