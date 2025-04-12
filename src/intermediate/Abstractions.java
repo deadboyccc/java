@@ -12,6 +12,11 @@ public class Abstractions {
     var animals = new ArrayList<Animal>(List.of(dog, fish, monkey));
     for (var animal : animals) {
       doAnimalStuff(animal);
+      // if then assign currentMammal to it
+      if (animal instanceof Mammals currentMammal) {
+        currentMammal.shedHair();
+
+      }
     }
 
   }

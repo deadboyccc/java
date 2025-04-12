@@ -1,5 +1,13 @@
 package intermediate;
 
+interface InnerFish {
+  // Implicit public static final
+  double CONST_VAR = 10.132;
+
+  // Implicit public abstract
+  void swim();
+}
+
 public class Fish extends Animal {
 
   public Fish(String type, String size, double weight) {
