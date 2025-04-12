@@ -8,6 +8,46 @@ interface InnerFish {
   void swim();
 }
 
+interface BigInnerFish extends InnerFish {
+  //
+  void eatSmallFish();
+
+}
+
+interface Trackable {
+  void getCoords();
+
+}
+
+enum SwimStages implements Trackable {
+
+  speeding, constVelocity, slowing;
+
+  @Override
+  public void getCoords() {
+    if (this != constVelocity) {
+      System.out.println("Swarm Accelerating");
+
+    }
+  }
+
+}
+
+record SharkSwarm(String name, String type) implements BigInnerFish {
+
+  @Override
+  public void swim() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'swim'");
+  }
+
+  @Override
+  public void eatSmallFish() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'eatSmallFish'");
+  }
+}
+
 public class Fish extends Animal {
 
   public Fish(String type, String size, double weight) {

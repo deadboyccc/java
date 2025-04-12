@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Abstractions {
   public static void main(String[] args) {
+    // usin interface ref type = best practices = more modular and extensible |
+    // allows refactoring without re-write
 
     Dog dog = new Dog("Wolf", "big", 128);
     Fish fish = new Fish("Goldfish", "medium", 64);
