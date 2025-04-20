@@ -12,3 +12,4 @@ The workspace contains two folders by default:
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
 Feel free to browse the code, but please note that it's primarily for my own learning and may not represent best practices or production-ready code.
+
