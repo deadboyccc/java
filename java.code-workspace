@@ -6,12 +6,12 @@
 	],
 	"settings": {
 		"java.project.sourcePaths": [
-			"src"
+			"src",
+			"demo/src/main/java/com/playground/demo",
+			"demo\\src\\main\\java\\com\\playground\\demo"
 		],
 		"java.project.outputPath": "bin",
-		"java.project.referencedLibraries": [
-			"lib/**/*.jar"
-		],
+		"java.project.referencedLibraries": [],
 		"github.copilot.enable": {
 			"*": false,
 			"plaintext": false,
