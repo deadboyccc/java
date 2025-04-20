@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Array",
+      "request": "launch",
+      "mainClass": "intro.Array",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "DemoApplication",
       "request": "launch",
       "mainClass": "com.playground.demo.DemoApplication",
