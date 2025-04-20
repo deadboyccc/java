@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ComparableDemo",
+      "request": "launch",
+      "mainClass": "intermediate.ComparableDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "App",
       "request": "launch",
       "mainClass": "intro.App",
