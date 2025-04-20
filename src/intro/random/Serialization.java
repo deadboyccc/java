@@ -1,11 +1,14 @@
+package intro.random;
+
 import java.io.*;
- class Box implements Serializable{
+
+class Box implements Serializable {
 
     private double width;
     private double height;
     private double depth;
 
-    public Box()  {
+    public Box() {
         this.width = 1.0;
         this.height = 1.0;
         this.depth = 1.0;
@@ -64,13 +67,15 @@ import java.io.*;
     @Override
     public String toString() {
         return "Box [width=" + width + ", height=" + height + ", depth=" + depth + "]";
-    }}
+    }
+}
+
 public class Serialization {
-    
+
     public static void main(String[] args) {
         // Box box1 = new Box(12,12);
         try {
-            
+
             FileInputStream fs = new FileInputStream("foo.ser");
             ObjectInputStream os = new ObjectInputStream(fs);
             Object one = os.readObject();
@@ -98,7 +103,7 @@ public class Serialization {
 
             // connection stream connecting to data source
             // it streams the data to chain connection (turns the bytes into obj)
-            
+
             // FileOutputStream fs = new FileOutputStream("foo.ser");
             // ObjectOutputStream os = new ObjectOutputStream(fs);
             // os.writeObject(box1);
@@ -107,6 +112,5 @@ public class Serialization {
             e.printStackTrace();
         }
 
-        
     }
 }

@@ -1,3 +1,5 @@
+package intro.random;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 

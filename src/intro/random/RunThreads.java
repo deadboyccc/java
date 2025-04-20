@@ -1,3 +1,5 @@
+package intro.random;
+
 // RunThreads.java
 
 public class RunThreads implements Runnable {
@@ -8,13 +10,14 @@ public class RunThreads implements Runnable {
 
         // Create two Threads, both using the same Runnable
         Thread alpha = new Thread(runner);
-        Thread beta  = new Thread(runner);
+        Thread beta = new Thread(runner);
 
         // Name the threads
         alpha.setName("Alpha thread");
         beta.setName("Beta thread");
 
-        // Start both threads (invokes run() in separate threads) :contentReference[oaicite:0]{index=0}
+        // Start both threads (invokes run() in separate threads)
+        // :contentReference[oaicite:0]{index=0}
         alpha.start();
         beta.start();
     }
@@ -29,4 +32,3 @@ public class RunThreads implements Runnable {
         }
     }
 }
-

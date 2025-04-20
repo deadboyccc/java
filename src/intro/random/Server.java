@@ -1,3 +1,5 @@
+package intro.random;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -21,7 +23,6 @@ public class Server {
             "You might want to rethink that haircut." };
 
     public void go() {
-
 
         try {
             ServerSocket serverSocket = new ServerSocket(5000);
@@ -49,7 +50,7 @@ public class Server {
 
         Thread thread1 = new Thread(new Test());
         thread1.start();
-        
+
         Server serverSocket = new Server();
         serverSocket.go();
     }

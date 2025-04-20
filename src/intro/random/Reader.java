@@ -1,9 +1,11 @@
+package intro.random;
+
 import java.io.*;
 
 public class Reader {
-    
+
     public static void main(String[] args) {
-          String fileName = "test.txt"; // The file to read from
+        String fileName = "test.txt"; // The file to read from
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
@@ -13,11 +15,11 @@ public class Reader {
 
             while ((line = reader.readLine()) != null) {
                 counter++;
-                System.out.println("Read line: " + counter.toString()+"\n" + line);
+                System.out.println("Read line: " + counter.toString() + "\n" + line);
 
                 // System.out.println("Pausing for 1 seconds...");
                 try {
-                    Thread.sleep(1000); 
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     System.err.println("Thread sleep interrupted: " + e.getMessage());
                     Thread.currentThread().interrupt();
@@ -33,6 +35,5 @@ public class Reader {
             // e.printStackTrace(); // Uncomment for detailed stack trace
         }
 
-        
     }
 }

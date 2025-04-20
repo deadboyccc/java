@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Employee",
+      "request": "launch",
+      "mainClass": "intermediate.domain.Employee",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "ComparableDemo",
       "request": "launch",
       "mainClass": "intermediate.ComparableDemo",

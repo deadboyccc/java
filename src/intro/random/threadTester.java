@@ -1,3 +1,5 @@
+package intro.random;
+
 public class threadTester {
     public static void main(String[] args) {
         Runnable job = new MyRunnable();
@@ -6,5 +8,5 @@ public class threadTester {
         t.start();
         t2.start();
     }
-    
+
 }
