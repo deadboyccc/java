@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "LambdaIntro1",
+      "request": "launch",
+      "mainClass": "intermediate.LambdaIntro1",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "Array",
       "request": "launch",
       "mainClass": "intro.Array",
