@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "FunctionalInterfaces",
+      "request": "launch",
+      "mainClass": "intermediate.FunctionalInterfaces",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "LambdaIntro1",
       "request": "launch",
       "mainClass": "intermediate.LambdaIntro1",
