@@ -25,7 +25,7 @@ public class StoreEmployee extends Employee {
 
     @Override
     public String toString() {
-        return "StoreEmployee [store=" + store + ", getName()=" + getName() + "]";
+        return "StoreEmployee []";
     }
 
     public class InnerStoreEmployee<T extends StoreEmployee> implements Comparator<StoreEmployee> {
@@ -56,5 +56,37 @@ public class StoreEmployee extends Employee {
 
         storeEmployees.sort(new StoreEmployee().new InnerStoreEmployee<>());
         System.out.println(storeEmployees);
+        System.out.println("local classes");
+        addPigLatinName(storeEmployees);
+    }
+
+    public static void addPigLatinName(List<? extends StoreEmployee> list) {
+
+        class DecoratedEmployee extends StoreEmployee {
+            private String piglatinName;
+            private Employee originalInstance;
+
+            public DecoratedEmployee(String piglatinName, Employee originalInstance) {
+                this.piglatinName = piglatinName;
+                this.originalInstance = originalInstance;
+            }
+
+            @Override
+            public String toString() {
+                return super.toString() + " | " + piglatinName;
+            }
+
+        }
+        List<DecoratedEmployee> newList = new ArrayList<>(list.size());
+        for (var employee : list) {
+            String name = employee.getName();
+            String piglatin = name.substring(1) + name.charAt(0) + "ay";
+            newList.add(new DecoratedEmployee(piglatin, employee));
+        }
+        for (DecoratedEmployee decoratedEmployee : newList) {
+            System.out.println(decoratedEmployee);
+
+        }
+
     }
 }
