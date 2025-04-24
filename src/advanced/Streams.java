@@ -13,6 +13,44 @@ import java.util.stream.Stream;
 
 public class Streams {
     public static void main(String[] args) {
+
+        // Intermediete Operations
+        IntStream.iterate((int) 'A', i -> i <= (int) 'z', i -> i += 1)
+                .filter(Character::isAlphabetic)
+                // once false = not longer checked
+                .map(Character::toUpperCase)
+                .distinct()
+                // .dropWhile(i -> Character.toUpperCase(i) <= 'E')
+                // .takeWhile(i -> i < 'a')
+                // .skip(5)
+                // .filter(i -> Character.toUpperCase(i) > 'E')
+                // .parallel()
+                .forEach(c -> System.out.printf("%c ", c));
+        System.out.println();
+        System.out.println("_".repeat(20));
+        Random random = new Random();
+        System.out.println();
+        Stream.generate(() -> random.nextInt((int) 'A', (int) 'Z' + 1))
+                .limit(50)
+                .distinct()
+                .sorted()
+                .forEach(c -> System.out.printf("%c ", c));
+
+        // MapToDouble or primitvies to avoid autoboxing & memory use
+        // peek
+        System.out.println("_".repeat(20));
+        System.out.println();
+        Stream.generate(() -> random.nextInt((int) 'A', (int) 'Z' + 1))
+                .limit(50)
+                .distinct()
+                // intermediete but for debugging kind of
+                .peek(s -> System.out.printf("---> %c |%n", s))
+                .sorted()
+                .forEach(c -> System.out.printf("%c ", c));
+
+    }
+
+    private static void StreamsIntro() {
         List<String> bingoPool = new ArrayList<>(75);
 
         int start = 1;
@@ -128,8 +166,6 @@ public class Streams {
                 .forEach(i -> {
                     System.out.println(i + " " + Thread.currentThread().getName());
                 });
-                
-
     }
 
     public static boolean isPrime(int wholeNumber) {
