@@ -48,8 +48,61 @@ public class Streams {
                 .sorted()
                 .forEach(c -> System.out.printf("%c ", c));
 
+        System.out.println("_".repeat(20));
+        System.out.println("_".repeat(20));
+
+        // Stream Terminal ops
+        var result = IntStream
+                .iterate(0, i -> i <= 1000, i -> i += 1000)
+                .summaryStatistics();
+        System.out.println("Result: " + result);
+        System.out.println("_".repeat(20));
+        System.out.println("_".repeat(20));
+        var result2 = IntStream
+                .iterate(0, i -> i <= 1000, i -> i += 3)
+                .summaryStatistics();
+        System.out.println("Result2: " + result2);
+        System.out.println("_".repeat(20));
+        System.out.println("_".repeat(20));
+        var leapYearData = IntStream
+                .iterate(2000, i -> i <= 2028, i -> i += 1)
+                .filter(i -> i % 4 == 0)
+                .peek(System.out::println)
+                .summaryStatistics();
+        System.out.println("Leap year Data: " + leapYearData);
+        System.out.println("___".repeat(20));
+        boolean allEven = IntStream
+                .iterate(0, i -> i += 2)
+                .limit(20)
+
+                .peek(i -> System.out.printf("----->%8d%n", i))
+                .parallel()
+                .allMatch(i -> i % 2 == 0);
+        System.out.println(allEven);
+        System.out.println("___".repeat(20));
+        Long count = IntStream
+                .iterate(0, i -> i += 2)
+                .limit(20)
+
+                .peek(i -> System.out.printf("----->%8d%n", i))
+                .parallel()
+                .count();
+        System.out.println(count);
+        System.out.println("___".repeat(20));
+        Boolean anyEvenQuestion = IntStream
+                .iterate(1, i -> i += 2)
+                .limit(20)
+
+                .peek(i -> System.out.printf("----->%8d%n", i))
+                .parallel()
+                .anyMatch(i -> i % 2 == 0);
+                //allMatched
+        System.out.println(anyEvenQuestion);
+
+
     }
 
+    @SuppressWarnings("unused")
     private static void StreamsIntro() {
         List<String> bingoPool = new ArrayList<>(75);
 
