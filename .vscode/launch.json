@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Streams",
+      "request": "launch",
+      "mainClass": "advanced.Streams",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "Hashing",
       "request": "launch",
       "mainClass": "advanced.Hashing",

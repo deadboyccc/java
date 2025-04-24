@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -96,9 +98,29 @@ public class Streams {
                 .peek(i -> System.out.printf("----->%8d%n", i))
                 .parallel()
                 .anyMatch(i -> i % 2 == 0);
-                //allMatched
+        // allMatched
         System.out.println(anyEvenQuestion);
+        System.out.println("_".repeat(20));
 
+        // Transformation and processing terminal operations
+
+        List<Integer> list = Stream.iterate(1, i -> i += 1)
+                .limit(4)
+                .toList();
+
+        System.out.println(list.getClass().getSimpleName());
+        System.out.println(list);
+
+        // mutable
+        List<String> strings = Stream.generate(() -> new Random().nextInt(10))
+                .limit(4)
+                .map(i -> i + "-Stringified.")
+                .collect(Collectors.toList());
+
+        Collections.shuffle(strings);
+        Collections.shuffle(strings);
+        Collections.shuffle(strings);
+        System.out.println(strings);
 
     }
 
