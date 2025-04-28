@@ -236,6 +236,11 @@ public class DateAndTime {
 
         // from here
         // PRINCIPLES OF LOCALIZATION 14
+        // it dives a little bit indepth onto obsecure things - more like a ref than a
+        // tutorial
+        // I dislike this style of teaching ( for me at least ) - aims for a
+        // comprehensive coverage, and imo that is not the point of a programming course
+
     }
 
 }
