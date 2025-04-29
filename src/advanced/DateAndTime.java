@@ -1,5 +1,8 @@
 package advanced;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -10,13 +13,17 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.chrono.ChronoPeriod;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
+import java.util.Currency;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class DateAndTime {
     public static void main(String[] args) {
@@ -240,6 +247,65 @@ public class DateAndTime {
         // tutorial
         // I dislike this style of teaching ( for me at least ) - aims for a
         // comprehensive coverage, and imo that is not the point of a programming course
+        System.out.println("_____".repeat(25));
+        System.out.println(dob.get(ChronoField.DAY_OF_YEAR));
+        System.out.println(dob.get(ChronoField.DAY_OF_WEEK));
+        System.out.println(dob.get(ChronoField.DAY_OF_MONTH));
+        System.out.println(dob.getDayOfWeek());
+        Period age = Period.between(dob.toLocalDate(), LocalDate.now());
+        System.out.println(age.getYears() + " Yrs " + age.getMonths() + " Months " + age.getDays() + " Days.");
+        System.out.println(age.toTotalMonths());
+        System.out.println(age.toTotalMonths() * 12);
+        System.out.println("_____".repeat(25));
+
+        // PRINCIPLES OF LOCALIZATION 14
+        Locale.setDefault(Locale.US);
+        Locale en = new Locale("en");
+        Locale enAU = new Locale("en", "AU");
+        Locale enCA = new Locale("en", "CA");
+        Locale enIN = new Locale.Builder().setLanguage("en").setRegion("IN").build();
+        Locale enNZ = new Locale.Builder().setLanguage("en").setRegion("NZ").build();
+
+        System.out.println("_____".repeat(30));
+        for (var locale : List.of(en, enAU, enCA, enIN, enNZ)) {
+            System.out.println(locale.getDisplayName() + "= " + LocalDateTime.now().format(dtf.withLocale(locale)));
+
+        }
+        System.out.println("_____".repeat(30));
+        System.out.println("Default Locale : " + Locale.getDefault());
+
+        System.out.println("_____".repeat(30));
+        System.out.println("_____".repeat(30));
+        DateTimeFormatter wdayMonth = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+
+        LocalDate May5 = LocalDate.of(2020, 5, 5);
+        System.out.println("_____".repeat(30));
+        for (var locale : List.of(Locale.CANADA, Locale.CANADA_FRENCH, Locale.FRANCE, Locale.GERMANY, Locale.TAIWAN,
+                Locale.JAPAN, Locale.ITALY)) {
+            System.out.println(locale.getDisplayName() + ":" +
+                    locale.getDisplayName(locale) + "=\n\t");
+            May5.format(wdayMonth.withLocale(locale));
+
+            NumberFormat decimalInfo = NumberFormat.getInstance(locale);
+            // mutable
+            decimalInfo.setMaximumFractionDigits(6);
+            System.out.println(decimalInfo.format(1234.12345));
+
+            // currency
+            NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
+            Currency localCurrency = Currency.getInstance(locale);
+            System.out.println(currency.format(55555.5555555) + "[ " +
+                    localCurrency.getCurrencyCode() + "]" +
+                    localCurrency.getDisplayName(locale) + "/" +
+                    localCurrency.getDisplayName());
+
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the laon amount : ");
+        scanner.useLocale(Locale.ITALY);
+        // BigDecimal myLoan = scanner.nextBigDecimal();
+        // System.out.println(myLoan);
 
     }
 
