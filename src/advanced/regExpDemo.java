@@ -110,7 +110,7 @@ public class regExpDemo {
 
         // Pattern Class
         String sentenceVar = "I like motocycles.";
-        boolean isBool = Pattern.matches("[A-Z].*[.]", sentenceVar);
+        boolean isBool = Pattern.matches("[A-Z].*[.]", sentence);
         System.out.println(isBool);
 
         // compiling a pattern (faster)
@@ -123,8 +123,33 @@ public class regExpDemo {
         System.out.println(matcher.lookingAt() + ": " + sentence);
         System.out.println("Matched Ending Index: " + matcher.end());
 
-
         // matches 7 regex
+
+        // previous match
+        System.out.println(matcher.group());
+        String htmlSnippet = """
+                <H1>My Heading</H1>
+                <H2>Sub-heading</H2>
+                <p>This is a paragraph about something.</p>
+                <p>This is another paragraph about something else.</p>
+                <H3>Summary</H3>
+                """;
+
+        Pattern htmlPattern = Pattern.compile("<([hH]\\d)>(?<inner>.*)<(/[hH]\\d)>");
+        Matcher htmlMatcher = htmlPattern.matcher(htmlSnippet);
+        while (htmlMatcher.find()) {
+            System.out.println("group 0 : " + htmlMatcher.group(0));
+            System.out.println("group 1 : " + htmlMatcher.group("inner"));
+            System.out.println("group 1 : " + htmlMatcher.group(2));
+
+        }
+
+        System.out.println("_".repeat(20));
+        htmlMatcher.reset();
+        htmlMatcher.results()
+                .forEach(mr -> System.out.println("group[0]: " + mr.group(0) + "group[1]: " + mr.group(1)));
+        System.out.println("_".repeat(20));
+        // review regExp if needed to that depth
 
     }
     // Character Classes
