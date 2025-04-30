@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.Instant;
+
+// what is this tho 
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 public class InputOutput {
     public static void main(String[] args) {
@@ -49,6 +54,67 @@ public class InputOutput {
         System.out.println("_____".repeat(30));
 
         System.out.println("6-IO");
+        // Main()
+        Path path2 = Path.of("files/testing.txt");
+        printPathInfo(path2);
+        // printPathInfo(Path.of("files/testing.csv"));
+        logStatement(path2);
+        System.out.println("_".repeat(20));
+        extraInfo(path2);
+        System.out.println("_".repeat(20));
+
+        //7.
+
+    }
+
+    private static void extraInfo(Path path) {
+        try {
+
+            var atts = Files.readAttributes(path, "*");
+            atts.entrySet()
+                    .forEach(System.out::println);
+            System.out.println(atts);
+        } catch (Exception e) {
+            System.out.println("problem!!");
+        }
+    }
+
+    private static void printPathInfo(Path path) {
+        System.out.println("------------------");
+        System.out.println("Path: " + path);
+        System.out.println("fileName = " + path.getFileName());
+        System.out.println("parent = " + path.getParent());
+        Path absolutePath = path.toAbsolutePath();
+        System.out.println("Absolute Path: = " + absolutePath);
+        System.out.println("Absolute Path Root: = " + absolutePath.getRoot());
+        System.out.println("Root = " + path.getRoot());
+        System.out.println("isAbsolute = " + path.isAbsolute());
+
+        System.out.println(absolutePath.getRoot());
+        // int i = 1;
+        // java.util.Iterator<Path> it = path.toAbsolutePath().iterator();
+        // while (it.hasNext()) {
+        // System.out.println(".".repeat(i++) + " " + it.next());
+        // }
+        int pathParts = absolutePath.getNameCount();
+        for (int i = 0; i < pathParts; i++) {
+            System.out.println(".".repeat(i + 1) + " " + absolutePath.getName(i));
+        }
+
+        System.out.println("------------------");
+    }
+
+    private static void logStatement(Path path) {
+        try {
+            Path parent = path.getParent();
+            if (!Files.exists(parent)) {
+                Files.createDirectories(parent);
+            }
+            Files.writeString(path, Instant.now() + ": hello file world\n", StandardOpenOption.CREATE,
+                    StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void useFile(String fileName) {
