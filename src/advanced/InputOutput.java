@@ -7,7 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.FileTime;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.stream.Stream;
 
 // what is this tho 
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -63,16 +67,97 @@ public class InputOutput {
         extraInfo(path2);
         System.out.println("_".repeat(20));
 
-        //7.
+        // 7.
+        // File Listings
 
+        // empty string = CWD
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        Path pathL = Path.of("");
+        System.out.println("cwd = " + pathL.toAbsolutePath());
+        try (
+                // listing
+                Stream<Path> paths = Files.list(pathL)) {
+            paths
+                    .map(InputOutput::listDir)
+                    .forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        try (
+                // Walk is recursive
+                Stream<Path> paths = Files.walk(pathL, 2)) {
+            paths
+                    .filter(Files::isRegularFile)
+                    .map(InputOutput::listDir)
+                    .forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        // Files Find
+        try (
+                // Walk is recursive
+                Stream<Path> paths = Files.find(pathL, Integer.MAX_VALUE,
+                        (p, attr) -> attr.isRegularFile() && attr.size() > 18000)) {
+            paths
+                    // .filter(Files::isRegularFile)
+                    .map(InputOutput::listDir)
+                    .forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        System.out.println("_Directory Streams_");
+        // glob
+        // NIO2 Class
+        Path vscodePath = pathL.resolve(".vscode");
+        try (var dirs = Files.newDirectoryStream(vscodePath, "*.json")) {
+            dirs.forEach(d -> System.out.println(InputOutput.listDir(d)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+
+        System.out.println("___________Directory Streams_");
+        // glob
+        // NIO2 Class
+        Path vscodePathJson = pathL.resolve(".vscode");
+        try (var dirs = Files.newDirectoryStream(vscodePathJson,
+                (p) -> p.getFileName().toString().endsWith("json"))) {
+            dirs.forEach(d -> System.out.println(InputOutput.listDir(d)));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+
+    }
+
+    private static String listDir(Path path) {
+        try {
+            boolean isDir = Files.isDirectory(path);
+            FileTime dateField = Files.getLastModifiedTime(path);
+            LocalDateTime modDT = LocalDateTime.ofInstant(dateField.toInstant(), ZoneId.systemDefault());
+            return String.format("%-20tD %-20tT %-20s %-15s", modDT, modDT,
+                    (isDir ? "<DIR>" : Files.size(path) + " Bytes"), path);
+        } catch (Exception e) {
+            System.out.println("Something went Wrong!");
+            return path.toString();
+        }
     }
 
     private static void extraInfo(Path path) {
         try {
-
             var atts = Files.readAttributes(path, "*");
-            atts.entrySet()
-                    .forEach(System.out::println);
+            atts.entrySet().forEach(System.out::println);
             System.out.println(atts);
         } catch (Exception e) {
             System.out.println("problem!!");
