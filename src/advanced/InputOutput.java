@@ -3,19 +3,25 @@ package advanced;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.stream.Stream;
 
-// what is this tho 
+// what is this tho  | ui lib
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+@SuppressWarnings("unused")
 public class InputOutput {
     public static void main(String[] args) {
         // cwd pwd
@@ -24,6 +30,7 @@ public class InputOutput {
                 new File("").getAbsolutePath());
 
         //
+
         String filename = "files/testing.csv";
         testFile2(filename);
         File file = new File(filename);
@@ -137,7 +144,54 @@ public class InputOutput {
             e.printStackTrace();
         }
         System.out.println("_".repeat(30));
+        // dfs
+        // walkFileTree - Depth Prio DepthFirstSearch type of algo
+        // x____x______x_____x____x____x_____x_____x____x
         System.out.println("_".repeat(30));
+        Path startingPath = Path.of(".");
+        FileVisitor<Path> statsVisitor = new StatsVisitor();
+        try {
+            Files.walkFileTree(startingPath, statsVisitor);
+        } catch (IOException e) {
+            System.out.println("error!");
+        }
+
+    }
+
+    private static class StatsVisitor extends SimpleFileVisitor<Path> {
+        private int level;
+
+        @Override
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            Objects.requireNonNull(file);
+            Objects.requireNonNull(attrs);
+            System.out.println("\t".repeat(level++) + file.getFileName());
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+            Objects.requireNonNull(dir);
+            Objects.requireNonNull(attrs);
+            level++;
+            System.out.println("\t".repeat(level) + dir.getFileName());
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+            Objects.requireNonNull(dir);
+            if (exc != null)
+                throw exc;
+            level--;
+            System.out.println(dir.getFileName());
+            return FileVisitResult.CONTINUE;
+        }
+
+        @Override
+        public String toString() {
+            return "StatsVisitor []";
+        }
 
     }
 
