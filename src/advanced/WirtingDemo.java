@@ -54,21 +54,42 @@ public class WirtingDemo {
             e.printStackTrace();
         }
         //
-        // print writer 
+        // print writer
         //
         try (PrintWriter writer = new PrintWriter("test4.csv")) {
             writer.println(studentsInfo);
             writer.write(System.lineSeparator());
-        
 
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
 
+        // //
+        // //
 
-        // //
-        // //
+        // managing files and dirs
+        // delegate to os fs
+        File oldFile = new File("file.txt");
+        File newFile = new File("new-file.txt");
+        if (oldFile.exists()) {
+            // var output = oldFile.renameTo(newFile);
+            // System.out.println( output);
+            System.out.println("good to go");
+        } else {
+            System.out.println("nah");
+        }
+
+        // modern path files
+        Path path3 = newFile.toPath();
+        Path path4 = Path.of("files/d.txt");
+
+        if (path4.getNameCount() > 1) {
+            Files.createDirectories(path4.subpath(0, path4.getNameCount() - 1));
+        }
+        Files.move(path3, path4);
+
+        // 18. IO
 
     }
 
