@@ -1,5 +1,6 @@
 package advanced;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 // what is this tho  | ui lib
@@ -154,6 +156,57 @@ public class InputOutput {
             Files.walkFileTree(startingPath, statsVisitor);
         } catch (IOException e) {
             System.out.println("error!");
+        }
+        // 10. Reading Files
+        // testfile.txt
+        System.out.println("______reading______");
+        // try {
+        // Files.createFile(Path.of("file.txt"));
+        // } catch (IOException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+
+        try (FileReader reader = new FileReader("file.txt")) {
+            System.out.println(Files.size(Path.of("file.txt")));
+            // by default 1 int at a time
+            // 4 bytes
+            char[] block = new char[1000];
+            int data;
+            System.out.println("start");
+            // many diskReads = bad
+            // fileReader is buffered based on OS and JVM impelementation
+            while ((data = reader.read(block)) != -1) {
+                // char represented in java as unsigned int (data) , cast it to get char
+                String content = new String(block, 0, data);
+                // System.out.print((char) data + " ");
+                System.out.printf("------> [%d chars] %s%n", data, content);
+
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            System.out.println();
+            System.out.println("finally!");
+        }
+        System.out.println("______".repeat(20));
+        // buffered readers
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("file.txt"))) {
+            // String line;
+            // while ((line = bufferedReader.readLine()) != null) {
+            // System.out.println(line);
+
+            // }
+            var lines = bufferedReader.lines()
+                    // .map((line) -> line.toUpperCase())
+                    .map(String::toUpperCase)
+                    .toList();
+            var size = lines.size();
+            System.out.println("size = " + size);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
