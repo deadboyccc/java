@@ -1,11 +1,14 @@
 package advanced;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +96,38 @@ public class WirtingDemo {
 
         // IO -> CONCURRENCY -> JDBC -> NETWORKING -> UNIT TESTING -> Java9 Modules
         // 18. IO
+        // transferTo
+        try (BufferedReader reader = new BufferedReader(new FileReader("file.txt"))) {
+            PrintWriter writer = new PrintWriter("new.txt");
+            //piping 
+            reader.transferTo(writer);
+            
+        } catch (Exception e) {
+            // TODO: handle exception
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void recursiveCopy(Path source, Path target) throws IOException {
+        Files.copy(source, target,StandardCopyOption.REPLACE_EXISTING);
+        if (Files.isDirectory(source)) {
+            try (var children = Files.list(source)) {
+                children.toList().forEach((p) -> {
+                    try {
+                        WirtingDemo.recursiveCopy(p, target.getFileName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
 
