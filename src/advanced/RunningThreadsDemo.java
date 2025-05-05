@@ -50,6 +50,9 @@ public class RunningThreadsDemo {
             }
         }
         System.out.println("C. State= "+thread.getState());
+
+        // review 4. then do challenge 5 
+
         // System.out.println("Main Thread continuing!");
         // try {
         // Thread.sleep(2000);
