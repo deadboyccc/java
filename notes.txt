@@ -2,7 +2,7 @@
 -----
 21-4 java 
 -----
-369 - flux operations - SPRING UDEMY
+DONE - SPRING UDEMY
 -----
 Spring cloud -> Microservices
         
