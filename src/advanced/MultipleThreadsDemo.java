@@ -18,7 +18,7 @@ class StopWatch {
         String threadName = Thread.currentThread().getName();
         ThreadColor threadColor = ThreadColor.ANSI_RESET;
         try {
-            threadColor = ThreadColor.valueOf(threadName)
+            threadColor = ThreadColor.valueOf(threadName);
             
         } catch (Exception e) {
             // TODO: handle exception
