@@ -9,18 +9,30 @@ class MessageRepo {
 
     public synchronized String read() {
         while (!hasMessage) {
+            try {
+                wait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
         hasMessage = false;
+        notifyAll();
         return message;
     }
 
     public synchronized void write(String message) {
         while (hasMessage) {
+            try {
+                wait();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
         hasMessage = true;
         this.message = message;
+        notifyAll();
 
     }
 
@@ -30,9 +42,15 @@ class MessageWriter implements Runnable {
 
     private MessageRepo outgoingMessage;
     private final String text = """
+            Joe Biden vs Humpty Dumpty 0
             Joe Biden vs Humpty Dumpty 1
             Joe Biden vs Humpty Dumpty 2
             Joe Biden vs Humpty Dumpty 3
+            Joe Biden vs Humpty Dumpty 5
+            Joe Biden vs Humpty Dumpty 6
+            Joe Biden vs Humpty Dumpty 7
+            Joe Biden vs Humpty Dumpty 8
+            Joe Biden vs Humpty Dumpty 9
                     """;
 
     public MessageWriter(MessageRepo outgoingMessage) {
