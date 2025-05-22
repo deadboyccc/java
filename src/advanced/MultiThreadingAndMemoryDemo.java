@@ -33,6 +33,7 @@ class ThreadStopWatch {
     }
 
     // non-sync
+    // volatile keyword to prevent field cashing on each thread
     public void countDown(int unitcount) {
         String threadName = Thread.currentThread().getName();
         ThreadColor threadColor = ThreadColor.ANSI_RESET;
