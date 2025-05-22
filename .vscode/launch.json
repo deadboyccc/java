@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "MultiThreadingAndMemoryDemo",
+      "request": "launch",
+      "mainClass": "advanced.MultiThreadingAndMemoryDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "Mathy",
       "request": "launch",
       "mainClass": "advanced.Mathy",
