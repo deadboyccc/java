@@ -41,7 +41,7 @@ public class RunningThreadsDemo {
             try {
                 Thread.sleep(1000);
                 System.out.println("B. State = " + Thread.currentThread().getState());
-                if(System.currentTimeMillis()-now>2000){
+                if (System.currentTimeMillis() - now > 2000) {
                     thread.interrupt();
                 }
             } catch (Exception e) {
@@ -49,9 +49,9 @@ public class RunningThreadsDemo {
                 System.out.println("B1. State = " + Thread.currentThread().getState());
             }
         }
-        System.out.println("C. State= "+thread.getState());
+        System.out.println("C. State= " + thread.getState());
 
-        // review 4. then do challenge 5 
+        // review 4. then do challenge 5
 
         // System.out.println("Main Thread continuing!");
         // try {

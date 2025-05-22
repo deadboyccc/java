@@ -56,7 +56,7 @@ public class InteractingWithRunningThreadsDemo {
                 try {
 
                     Thread.sleep(1000);
-                    if (System.currentTimeMillis() - now > 2000) {
+                    if (System.currentTimeMillis() - now > 8000) {
                         thread.interrupt();
                     }
                 } catch (Exception e) {
@@ -70,10 +70,10 @@ public class InteractingWithRunningThreadsDemo {
         thread.start();
         threadMonitor.start();
         try {
-        thread.join();
+            thread.join();
         } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         if (!thread.isInterrupted()) {
             installThread.start();
