@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Base64endeDemo",
+      "request": "launch",
+      "mainClass": "advanced.Base64endeDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "MultiThreadingAndMemoryDemo",
       "request": "launch",
       "mainClass": "advanced.MultiThreadingAndMemoryDemo",
