@@ -170,7 +170,7 @@ public class InputOutput {
         try (FileReader reader = new FileReader("file.txt")) {
             System.out.println(Files.size(Path.of("file.txt")));
             // by default 1 int at a time
-            // 4 bytes char[] block = new char[1000];
+            char[] block = new char[1000];
             int data;
             System.out.println("start");
             // many diskReads = bad

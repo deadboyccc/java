@@ -6,6 +6,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ProducerConsumerDeadlocksDemo",
+      "request": "launch",
+      "mainClass": "advanced.ProducerConsumerDeadlocksDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
+      "name": "JavaUtilsConcurrentLocksDemo",
+      "request": "launch",
+      "mainClass": "advanced.JavaUtilsConcurrentLocksDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "Base64endeDemo",
       "request": "launch",
       "mainClass": "advanced.Base64endeDemo",

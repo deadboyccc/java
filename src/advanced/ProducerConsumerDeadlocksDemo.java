@@ -65,7 +65,7 @@ class MessageWriter implements Runnable {
             outgoingMessage.write(lines[i]);
             try {
 
-                Thread.sleep(random.nextInt(500, 2000));
+                Thread.sleep(random.nextInt(100, 30));
             } catch (Exception e) {
                 // TODO: handle exception
                 e.printStackTrace();
