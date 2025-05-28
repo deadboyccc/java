@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ParallelStreamsPlusPlusDemo",
+      "request": "launch",
+      "mainClass": "advanced.ParallelStreamsPlusPlusDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "FixedThreadPoolClassDemo",
       "request": "launch",
       "mainClass": "advanced.FixedThreadPoolClassDemo",
