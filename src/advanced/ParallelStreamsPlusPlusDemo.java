@@ -1,11 +1,14 @@
 package advanced;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringJoiner;
+import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -71,6 +74,7 @@ public class ParallelStreamsPlusPlusDemo {
         var backTogetherAgain = words
                 // .parallelStream()
                 .stream()
+
                 .reduce((new StringJoiner(" ")), StringJoiner::add, StringJoiner::merge);
 
         System.out.println(backTogetherAgain);
@@ -113,12 +117,93 @@ public class ParallelStreamsPlusPlusDemo {
                 .parallel()
                 .collect(Collectors.groupingBy(Person::lastName));
 
+        // group by last name= key
+        // elements grouped by that key = list of them
+        // --- Map<String(lastname) -> List<Person>(who has that last name)> ---
         test.forEach((lastName, people) -> {
             System.out.println("Last name: " + lastName);
             people.forEach(System.out::println);
             System.out.println();
         });
 
+        test.keySet().forEach(System.out::println);
+        // not thread safe -> lacks sync
+        System.out.println(test.getClass().getName());
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        System.out.println("_".repeat(30));
+        Map<String, Long> lastNameCountsThreadSafe = Stream.generate(Person::new)
+                .limit(10000)
+                .parallel()
+                .collect(Collectors
+                        .groupingByConcurrent(Person::lastName,
+                                Collectors.counting()));
+
+        lastNameCountsThreadSafe.entrySet().forEach(System.out::println);
+
+        long totalConcurrent = 0;
+        for (long count : lastNameCountsThreadSafe.values()) {
+            totalConcurrent += count;
+        }
+        System.out.println("_".repeat(30));
+        System.out.println("Total= " + totalConcurrent);
+        System.out.println("_".repeat(30));
+        System.out.println(lastNameCountsThreadSafe.getClass().getName());
+
+        // side effects | not threadSafe map + parallel streams = no
+        var lastCounts = new ConcurrentSkipListMap<String, Long>();
+        // this is block while the above is't
+        // var lastCounts = Collections.synchronizedMap(new TreeMap<String, Long>());
+        Stream.generate(Person::new)
+                .limit(10000)
+                .parallel()
+                .forEach((person) -> lastCounts.merge(person.lastName(),
+                        1L,
+                        Long::sum));
+
+        System.out.println(lastCounts);
+        long totalSideEffectsCount = 0;
+        for (long count : lastCounts.values()) {
+            totalSideEffectsCount += count;
+        }
+
+        System.out.println("totalSideEffectscount = " + totalSideEffectsCount);
+
+        var threadMap = new ConcurrentSkipListMap<String, Long>();
+
+        System.out.println("_____".repeat(20));
+        var persons2 = Stream.generate(Person::new)
+                .limit(10_000)
+                .parallel()
+
+                // side effects :3
+                .peek((p) -> {
+                    var threadName = Thread.currentThread().getName().replace("ForkJoinPool.commonPool-worker-",
+                            "Thread_");
+                    threadMap.merge(threadName, 1L, Long::sum);
+                })
+
+                .toArray(Person[]::new);
+
+        System.out.println("total = " + persons2.length);
+        System.out.println("_____".repeat(20));
+        System.out.println(threadMap);
+        System.out.println("_____".repeat(20));
+        threadMap.forEach((k, v) -> {
+            if (k.equalsIgnoreCase("main")) {
+                System.out.println("--->Main: " + v);
+                return;
+            }
+            System.out.printf("%-10s:%5d%n", k, v);
+
+        });
+        System.out.println("_____".repeat(20));
+        long threadTotal = 0;
+
+        for (long count : threadMap.values()) {
+            threadTotal += count;
+        }
+        System.out.println("Thread counts = " + threadTotal);
     }
 
 }
