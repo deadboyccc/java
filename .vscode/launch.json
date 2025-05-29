@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ThreadComparisonExample",
+      "request": "launch",
+      "mainClass": "advanced.ThreadComparisonExample",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "ParallelStreamsPlusPlusDemo",
       "request": "launch",
       "mainClass": "advanced.ParallelStreamsPlusPlusDemo",
