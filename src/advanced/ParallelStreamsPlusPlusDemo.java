@@ -105,6 +105,20 @@ public class ParallelStreamsPlusPlusDemo {
         }
         System.out.println("_".repeat(30));
         System.out.println("Total= " + total);
+
+        System.out.println("_".repeat(30));
+
+        var test = Stream.generate(Person::new)
+                .limit(10)
+                .parallel()
+                .collect(Collectors.groupingBy(Person::lastName));
+
+        test.forEach((lastName, people) -> {
+            System.out.println("Last name: " + lastName);
+            people.forEach(System.out::println);
+            System.out.println();
+        });
+
     }
 
 }
