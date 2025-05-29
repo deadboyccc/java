@@ -236,6 +236,8 @@ public class ParallelStreamsPlusPlusDemo {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        System.out.println("_-_".repeat(20));
+
     }
 
 }
