@@ -1,5 +1,6 @@
 package advanced;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -53,6 +54,8 @@ class RecursiveSumTask extends RecursiveTask<Long> {
 }
 
 public class ParallelProcessesDemo {
+    private static final int BLOCKING_DURATION_MS = 500;
+
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         int numbersLength = 100_000;
@@ -108,6 +111,15 @@ public class ParallelProcessesDemo {
         System.out.println("forkJoinSum= " + forkJoinSum);
         threadPool.shutdown();
         System.out.println(threadPool.getClass().getName());
+    }
+
+    private static void simulateBlockingOperation() {
+        try {
+            Thread.sleep(BLOCKING_DURATION_MS);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.err.println("Task interrupted.");
+        }
     }
 
 }

@@ -1,18 +1,25 @@
 package advanced;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.StringJoiner;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import intro.Array;
 
 record Person(String FirstName, String lastName, int age) {
     private final static String[] firsts = { "Able", "Bob", "Charlie", "Donna", "Eve", "Fred" };
@@ -204,6 +211,31 @@ public class ParallelStreamsPlusPlusDemo {
             threadTotal += count;
         }
         System.out.println("Thread counts = " + threadTotal);
+        System.out.println("___");
+
+        // --- Executors with resources ---
+        try (ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor()) {
+            List<String> list = Collections.synchronizedList(new ArrayList<>());
+            CountDownLatch c1 = new CountDownLatch(500);
+            for (int i = 0; i < 500; i++) {
+                final int taskNumber = i;
+                executorService.submit(() -> {
+                    list.add("TEST_" + taskNumber);
+                    c1.countDown();
+                });
+            }
+            c1.await();
+            // Synchronize on the list when sorting and iterating
+            synchronized (list) {
+                list.sort(Comparator.naturalOrder());
+                System.out.println("start_");
+                list.forEach(System.out::println);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
 }

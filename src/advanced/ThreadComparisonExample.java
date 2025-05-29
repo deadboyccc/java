@@ -32,16 +32,18 @@ public class ThreadComparisonExample {
         long platformThread200EndTime = System.currentTimeMillis();
         long platformThread200Duration = platformThread200EndTime - platformThread200StartTime;
         System.out.printf("Platform Threads (Pool Size %d): Completed %d tasks in %dms (average per task: %.2fms)%n",
-                poolSize200, NUM_REQUESTS, platformThread200Duration, (double) platformThread200Duration / NUM_REQUESTS);
+                poolSize200, NUM_REQUESTS, platformThread200Duration,
+                (double) platformThread200Duration / NUM_REQUESTS);
 
         // --- Platform Threads with Pool Size 1000 ---
-        int poolSize1000 = 1000;
+        int poolSize1000 = 1000 ;
         long platformThread1000StartTime = System.currentTimeMillis();
         runWithPlatformThreads(poolSize1000);
         long platformThread1000EndTime = System.currentTimeMillis();
         long platformThread1000Duration = platformThread1000EndTime - platformThread1000StartTime;
         System.out.printf("Platform Threads (Pool Size %d): Completed %d tasks in %dms (average per task: %.2fms)%n",
-                poolSize1000, NUM_REQUESTS, platformThread1000Duration, (double) platformThread1000Duration / NUM_REQUESTS);
+                poolSize1000, NUM_REQUESTS, platformThread1000Duration,
+                (double) platformThread1000Duration / NUM_REQUESTS);
     }
 
     private static void simulateBlockingOperation() {
