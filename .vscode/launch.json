@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "WatcherServiceDemo",
+      "request": "launch",
+      "mainClass": "advanced.WatcherServiceDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "AtomicClassSimpleDemo",
       "request": "launch",
       "mainClass": "advanced.AtomicClassSimpleDemo",
