@@ -64,10 +64,13 @@ public class SimpleIntroJDBCDemo {
             System.out.printf("Supports Batch Updates: %s%n", metaData.supportsBatchUpdates());
             System.out.printf("Supports Savepoints: %s%n", metaData.supportsSavepoints());
             System.out.printf("Default Transaction Isolation: %d%n", metaData.getDefaultTransactionIsolation());
+            Thread.sleep(15000);
         } catch (SQLException e) {
             // Optionally log SQLState and ErrorCode for debugging
             System.err.printf("SQLState: %s, ErrorCode: %d%n", e.getSQLState(), e.getErrorCode());
             throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

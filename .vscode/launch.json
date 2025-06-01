@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SimpleIntroJDBCDemo",
+      "request": "launch",
+      "mainClass": "advanced.SimpleIntroJDBCDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "WatcherServiceDemo",
       "request": "launch",
       "mainClass": "advanced.WatcherServiceDemo",
