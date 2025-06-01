@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "VisitorList",
+      "request": "launch",
+      "mainClass": "advanced.VisitorList",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "ThreadComparisonExample",
       "request": "launch",
       "mainClass": "advanced.ThreadComparisonExample",
