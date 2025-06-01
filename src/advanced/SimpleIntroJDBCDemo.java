@@ -19,9 +19,10 @@ public class SimpleIntroJDBCDemo {
 
         // Prompt for DB password securely
         JPasswordField pf = new JPasswordField();
+        pf.requestFocusInWindow(); // Request focus on the password field
         int okCxl = JOptionPane.showConfirmDialog(
-                null, pf, "Enter DB Password:",
-                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+            null, pf, "Enter DB Password:",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         final char[] password = (okCxl == JOptionPane.OK_OPTION) ? pf.getPassword() : null;
 
