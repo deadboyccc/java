@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "JDBCWithPropsDemo",
+      "request": "launch",
+      "mainClass": "advanced.JDBCWithPropsDemo",
+      "projectName": "java_969ada9e"
+    },
+    {
+      "type": "java",
       "name": "SimpleIntroJDBCDemo",
       "request": "launch",
       "mainClass": "advanced.SimpleIntroJDBCDemo",

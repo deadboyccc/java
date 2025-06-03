@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class SimpleIntroJDBCDemo {
