@@ -1,12 +1,11 @@
 {
-    "java.project.sourcePaths": [
-        "src"
-    ],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\mysql-connector-j-9.3.0.jar"
-    ],
-    "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\mysql-connector-j-9.3.0.jar"
+  ],
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.format.settings.url": ".vscode/java-formatter.xml"
 }
