@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "test",
+      "request": "launch",
+      "mainClass": "test",
+      "projectName": "javamc"
+    },
+    {
+      "type": "java",
       "name": "JDBCWithPropsDemo",
       "request": "launch",
       "mainClass": "advanced.JDBCWithPropsDemo",
