@@ -6,6 +6,6 @@
   ],
   "settings": {
     "java.debug.settings.onBuildFailureProceed": true,
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic"
   }
 }
