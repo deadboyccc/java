@@ -1,8 +1,12 @@
-46 spring boot book
+46 spring boot book (postponed)
 -------
-22-14 java 
+java 
+22-14 jdbc 
+23-3  networking-channels-virtualThreads
+24-1 JUnit (unit testing )
 -------
 DONE - SPRING UDEMY
 -------
+guru course
 Spring cloud -> Microservices
         
