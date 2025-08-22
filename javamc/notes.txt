@@ -1,7 +1,7 @@
 46 spring boot book (postponed)
 -------
 java 
-22-14 -> jdbc 
+22-15 -> jdbc 
 23-4  -> networking-channels-virtualThreads
 24-1  -> JUnit (unit testing )
 -------
