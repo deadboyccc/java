@@ -30,8 +30,16 @@ public class NIOBufferMain {
     doOperation("Compact: ", buffer, (b) -> b.compact());
     doOperation("Append: ", buffer, (b) -> b.put("this is a new test".getBytes()));
     // reading
-    doOperation("Flip(from write to read): ", buffer, ByteBuffer::flip);
-    doOperation("Read and Print Value: ", buffer, printBuffer);
+    // doOperation("Flip(from write to read): ", buffer, ByteBuffer::flip);
+    // doOperation("Read and Print Value: ", buffer, printBuffer);
+
+    // no flipping needed
+    doOperation("Read and Print Value: ",
+        buffer.slice(0, buffer.position()), printBuffer);
+    doOperation("Append: ", buffer, b -> b.put(" *****".getBytes()));
+    doOperation("Read and Print Value: ",
+        buffer.slice(0, buffer.position()), printBuffer);
+
   }
 
   private static void doOperation(String op, ByteBuffer buffer, Consumer<ByteBuffer> c) {
