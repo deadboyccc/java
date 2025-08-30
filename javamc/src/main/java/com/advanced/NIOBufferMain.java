@@ -1,0 +1,44 @@
+package com.advanced;
+
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.function.Consumer;
+
+public class NIOBufferMain {
+  public static void main(String[] args) {
+
+    Consumer<ByteBuffer> printBuffer = (buffer) -> {
+
+      byte[] data = new byte[buffer.limit()];
+      buffer.get(data);
+      System.out.printf("\"%s\" ", new String(data, StandardCharsets.UTF_8));
+    };
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    doOperation("Print: ", buffer, (b) -> System.out.println(b + " "));
+    doOperation("Write: ", buffer, b -> b.put("this is a test ".getBytes()));
+    doOperation("Flip(from write to read): ", buffer, ByteBuffer::flip);
+    doOperation("Read and Print Value: ", buffer, printBuffer);
+
+    // fliping r to w
+
+    doOperation("Flip(from read to write) ", buffer, ByteBuffer::flip);
+    // doOperation("1. Move position to the end to append: ", buffer, b ->
+    // b.position(b.limit()));
+    // doOperation("2. Change limit to capacity: ", buffer, (b) ->
+    // b.limit(b.capacity()));
+    // more elegant
+    doOperation("Compact: ", buffer, (b) -> b.compact());
+    doOperation("Append: ", buffer, (b) -> b.put("this is a new test".getBytes()));
+    // reading
+    doOperation("Flip(from write to read): ", buffer, ByteBuffer::flip);
+    doOperation("Read and Print Value: ", buffer, printBuffer);
+  }
+
+  private static void doOperation(String op, ByteBuffer buffer, Consumer<ByteBuffer> c) {
+    System.out.printf("%-30s", op);
+    c.accept(buffer);
+    System.out.printf("Capacity = %d, Limit = %d, Position=%d, Remaining=%d%n",
+        buffer.capacity(), buffer.limit(), buffer.position(), buffer.remaining());
+
+  }
+}
