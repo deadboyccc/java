@@ -25,6 +25,7 @@ public class SimpleClient {
           System.out.println(responseString);
 
         }
+
       } while (!requeString.equals("exit"));
     } catch (Exception e) {
       System.out.println("Client Error: " + e.getMessage());
