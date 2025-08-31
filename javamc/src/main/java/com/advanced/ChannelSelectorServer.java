@@ -2,6 +2,7 @@ package com.advanced;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
@@ -47,4 +48,20 @@ public class ChannelSelectorServer {
 
   }
 
+  private static void echoData(SelectionKey key) throws IOException {
+    SocketChannel clientChannel = (SocketChannel) key.channel();
+    ByteBuffer buffer = ByteBuffer.allocate(1024);
+    int bytesRead = clientChannel.read(buffer);
+    if (bytesRead > 0) {
+      buffer.flip();
+      byte[] data = new byte[buffer.remaining()];
+      buffer.get(data);
+      String message = "Echo: " + new String(data);
+      clientChannel.write(ByteBuffer.wrap(message.getBytes()));
+    } else if (bytesRead == -1) {
+      System.out.println("Client Disconnected: " + clientChannel.getRemoteAddress());
+      key.cancel();
+      clientChannel.close();
+    }
+  }
 }
