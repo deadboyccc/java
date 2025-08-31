@@ -14,6 +14,8 @@ public class warmUpAfterLongBreakLOL {
     });
     System.out.println("___________");
     Runtime.getRuntime();
+    System.out.println(Runtime.getRuntime().availableProcessors());
+    System.out.println(Runtime.getRuntime().freeMemory());
     System.out.println(Runtime.version());
 
   }
