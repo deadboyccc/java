@@ -36,6 +36,12 @@ public class ChannelSelectorServer {
           // ops
           if (key.isAcceptable()) {
             SocketChannel clientChannel = serverChannel.accept();
+            System.out.println("Cleint connected: " + clientChannel.getRemoteAddress());
+            clientChannel.configureBlocking(false);
+            clientChannel.register(selector, SelectionKey.OP_READ);
+
+          } else if (key.isReadable()) {
+            echoData(key);
           }
 
         }
