@@ -2,7 +2,7 @@
 -------
 java 
 22-15 -> jdbc 
-23-18 -> networking-channels-virtualThreads
+23-22 -> networking-channels-virtualThreads
 24-1  -> JUnit (unit testing )
 -------
 DONE - SPRING UDEMY
