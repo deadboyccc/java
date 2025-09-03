@@ -1,9 +1,9 @@
 46 spring boot book (postponed)
 -------
 java 
-22-25 -> jdbc 
+22-done/review on need -> jdbc 
 23-done/implement udp+ -> networking-channels-virtualThreads
-24-1  -> JUnit (unit testing )
+24-done/nothing to implement too basic : | -> JUnit (unit testing )
 -------
 DONE - SPRING UDEMY
 -------
